@@ -8,36 +8,42 @@
     <link rel="stylesheet" th:href="@{/css/inicio.css}">
 </head>
 <body>
-<div class="container">
-    <form th:text="${/login/?}" method="post">
+    <div class="container">
+       <form th:action="@{/login/autenticar}" method="post">
+
         <div class="mt-5 mb-4">
             <h1>Login</h1>
         </div>
-        <div class="alert alert-danger" role="alert">
-            <span>Debe completar correctamente las credenciales</span>
+
+        <div class="alert alert-danger" role="alert" th:if="${loginModel.codigo() !='00'}">
+            <span th:text="${loginModel.mensaje}"></span>
         </div>
+
         <div class="mb-3">
-            <select name="tipoDocumento" id="tipoDocumento" class="form-select-lg">
-                <option selected disabled>Tipo Documento</option>
+           <select  id="tipoDocumento" name="tipoDocumento" class="form-select form-select-lg">
+                <option selected>Tipo Documento</option>
                 <option value="1">DNI</option>
                 <option value="2">CEX</option>
                 <option value="3">PASS</option>
             </select>
         </div>
+
         <div class="mb-3">
             <input type="text" id="numeroDocumento" name="numeroDocumento" placeholder="Número de documento"
                    class="form-control form-control-lg">
         </div>
+
         <div class="mb-3">
             <input type="password" id="password" name="password" placeholder="Password"
                    class="form-control form-control-lg">
         </div>
+
         <div class="d-grid">
-            <button type="submit" class="btn-primary btn-lg">Ingresar</button>
+            <button type="submit" class="btn btn-primary btn-lg">Ingresar</button>
         </div>
 
 
-    </form>
-</div>
+         </form>
+    </div>
 </body>
 </html>
