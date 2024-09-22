@@ -10,33 +10,36 @@ import pe.edu.cibertec.patitasfrontendb.viewmodel.LoginModel;
 
 /*1*/
 @Controller
-@RequestMapping("/login") /*mapeo*/
+@RequestMapping("/login")
 public class LoginController {
 
     @GetMapping("/inicio")
-
     public String inicio(Model model) {
-        LoginModel loginModel=new LoginModel("00","","");
-        model.addAttribute("loginModel",loginModel);
+        LoginModel loginModel = new LoginModel("00", "", "");
+        model.addAttribute("loginModel", loginModel);
         return "inicio";
     }
+
     @PostMapping("/autenticar")
-    public String autenticar(@RequestParam("tipoDocumento")String tipoDocumento, @RequestParam("numeroDocumento")String numeroDocumento,
-                             @RequestParam("password")String password, Model model) {
-    //validar campos de entrada
-    if(tipoDocumento == null || tipoDocumento.trim().length()==0 ||
-            numeroDocumento == null || numeroDocumento.trim().length()==0||
-            password == null || password.trim().length()==0){
+    public String autenticar(@RequestParam("tipoDocumento") String tipoDocumento,
+                             @RequestParam("numeroDocumento") String numeroDocumento,
+                             @RequestParam("password") String password,
+                             Model model) {
 
-        LoginModel loginModel=new LoginModel("01","Error: Debe completar correctamente sus credenciales","");
-        model.addAttribute("loginModel",loginModel);
-        return "inicio";
-    }
-        LoginModel loginModel=new LoginModel("00","","Bruno Diaz");
-        model.addAttribute("loginModel",loginModel);
+        // Validar campos de entrada
+        if (tipoDocumento == null || tipoDocumento.trim().length() == 0 ||
+                numeroDocumento == null || numeroDocumento.trim().length() == 0 ||
+                password == null || password.trim().length() == 0){
+
+            LoginModel loginModel = new LoginModel("01", "Error: Debe completar correctamente sus credenciales", "");
+            model.addAttribute("loginModel", loginModel);
+            return "inicio";
+        }
+
+        LoginModel loginModel = new LoginModel("00", "", "Bruno Diaz");
+        model.addAttribute("loginModel", loginModel);
         return "principal";
-    }
 
+    }
 
 }
-
