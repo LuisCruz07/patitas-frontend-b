@@ -19,7 +19,8 @@ import pe.edu.cibertec.patitasfrontendb.viewmodel.LoginModel;
 public class LoginController {
   /*part2 num2*/
     @Autowired
-    RestTemplate restTemplate;
+    RestTemplate restTemplateAutenticacion;
+
 /*part2 num 2*/
     @GetMapping("/inicio")
     public String inicio(Model model) {
@@ -46,9 +47,9 @@ public class LoginController {
      try {
          //INVOCAR API DE VALIDACION DE USUARIO
          /*part 2num 5*/
-         String endpoint = "http://localhost:8081/autenticacion/login";
+
          LoginRequestDTO loginRequestDTO = new LoginRequestDTO(tipoDocumento, numeroDocumento, password);
-         LoginResponseDTO loginResponseDTO = restTemplate.postForObject(endpoint, loginRequestDTO, LoginResponseDTO.class);
+         LoginResponseDTO loginResponseDTO = restTemplateAutenticacion.postForObject("/login", loginRequestDTO, LoginResponseDTO.class);
 
          //validar respuesta
          if(loginResponseDTO.codigo().equals("00")){
